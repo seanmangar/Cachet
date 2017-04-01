@@ -12,14 +12,14 @@
 <hr>
 
 <div class="markdown-body">
-    {!! $incident->formattedMessage !!}
+    {!! $incident->formatted_message !!}
 </div>
 
 @if($incident->updates)
 <div class="timeline">
     <div class="content-wrapper">
-        @foreach ($incident->updates as $index => $update)
-        <div class="moment {{ $index === 0 ? 'first' : null }}" id="update-{{ $update->id }}">
+        @foreach ($incident->updates as $update)
+        <div class="moment {{ $loop->first ? 'first' : null }}" id="update-{{ $update->id }}">
             <div class="row event clearfix">
                 <div class="col-sm-1">
                     <div class="status-icon status-{{ $update->status }}" data-toggle="tooltip" title="{{ $update->human_status }}" data-placement="left">
@@ -30,7 +30,7 @@
                     <div class="panel panel-message incident">
                         <div class="panel-body">
                             <div class="markdown-body">
-                                {!! $update->formattedMessage !!}
+                                {!! $update->formatted_message !!}
                             </div>
                         </div>
                         <div class="panel-footer"><small>{{ trans('cachet.incidents.posted', ['timestamp' => $update->created_at_diff]) }}</small></div>
